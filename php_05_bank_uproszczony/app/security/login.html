@@ -1,0 +1,49 @@
+{extends file="../../templates/main.html"}
+
+{block name=footer}Zapraszamy do korzystania{/block}
+
+{block name=content}
+
+
+
+<h3>Obliczanie kredytu</h2>
+
+
+<form class="pure-form pure-form-stacked" action="{$app_url}/app/security/login.php" method="post">
+	<legend>Logowanie</legend>
+    <fieldset>
+		<label for="id_login">login: </label>
+		<input id="id_login" type="text" name="login"  >
+		
+        <label for="id_pass">pass: </label>
+		<input id="id_pass" type="password" name="pass" />
+		
+       
+        
+      
+					
+	</fieldset>
+	<button type="submit" class="pure-button pure-button-primary">Zaloguj</button>
+</form>
+
+<div class="messages">
+
+{* wyświeltenie listy błędów, jeśli istnieją *}
+{if isset($messages)}
+	{if count($messages) > 0} 
+		<h4>Wystąpiły błędy: </h4>
+		<ol class="err">
+		{foreach  $messages as $msg}
+		{strip}
+			<li>{$msg}</li>
+		{/strip}
+		{/foreach}
+		</ol>
+	{/if}
+{/if}
+
+
+
+</div>
+
+{/block}

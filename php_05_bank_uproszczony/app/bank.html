@@ -1,0 +1,73 @@
+{extends file="../templates/main.html"}
+
+{block name=footer}Zapraszamy do zalogowania{/block}
+
+{block name=content}
+
+<div style="width:90%; margin: 2em auto;  ">
+	<a href="{$app_url}/app/inna_chroniona.php" class="pure-button">Kolejna chroniona strona</a>
+	
+	<a href="{$app_url}/app/security/logout.php" class="pure-button pure-button-active">Wyloguj</a>
+</div>
+
+<h3>Obliczanie kredytu</h2>
+
+
+<form class="pure-form pure-form-stacked" action="{$app_url}/app/bank.php" method="post">
+	<fieldset>
+		<label for="k">Kwota kredytu</label>
+		<input id="k" type="text" placeholder="wartość kwoty" name="k" value="{$form['k']}">
+		
+        <label for="o">Oprocentowanie kredytu</label>
+		<input id="o" type="text" placeholder="wartość oprocentowania" name="o" value="{$form['o']}">
+		
+        <label for="c">Ilość lat</label>
+		<input id="c" type="text" placeholder="ilość czasu" name="c" value="{$form['c']}">
+		
+        
+      
+					
+	</fieldset>
+	<button type="submit" class="pure-button pure-button-primary">Oblicz</button>
+</form>
+
+<div class="messages">
+
+{* wyświeltenie listy błędów, jeśli istnieją *}
+{if isset($messages)}
+	{if count($messages) > 0} 
+		<h4>Wystąpiły błędy: </h4>
+		<ol class="err">
+		{foreach  $messages as $msg}
+		{strip}
+			<li>{$msg}</li>
+		{/strip}
+		{/foreach}
+		</ol>
+	{/if}
+{/if}
+
+{* wyświeltenie listy informacji, jeśli istnieją *}
+{if isset($infos)}
+	{if count($infos) > 0} 
+		<h4>Informacje: </h4>
+		<ol class="inf">
+		{foreach  $infos as $msg}
+		{strip}
+			<li>{$msg}</li>
+		{/strip}
+		{/foreach}
+		</ol>
+	{/if}
+{/if}
+
+{if isset($result)}
+	<h4>Wynik</h4>
+	<p class="res">
+	{$result}
+	</p>
+{/if}
+
+</div>
+
+{/block}
